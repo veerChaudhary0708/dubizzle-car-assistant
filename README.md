@@ -36,7 +36,7 @@ I chose Streamlit because I had previous experience with it and it provides a br
 
 Validated tools retrieve inventory and stage changes; one SQLite transaction commits the conversation turn and its updates. Session state holds displayed cars and booking drafts, while shopper preferences persist across chats. Missing listing facts remain unknown. Bookings require review and explicit confirmation. Hours are **Monday–Saturday, 08:00–20:00 Dubai time**; 30-minute slots and making all 100 cars demo-bookable are simulation assumptions. Leads capture price range and needs in **`runtime/leads.csv`**, even without a booking.
 
-Improvements outside the current scope address the present limits: add semantic ranking alongside exact filters to handle paraphrases that literal text retrieval misses; retrieve relevant older conversation beyond the latest **24 exchanges** supplied to Gemini; reduce sequential model calls to improve latency; and broaden evaluations of ambiguous references and requests containing several intents. These would improve retrieval, conversational continuity, and response reliability.
+For further improvements I’d add semantic search alongside the existing filters, retrieve relevant history beyond the last 24 exchanges, and reduce model calls for faster replies. I’d also test more ambiguous follow-ups and messages containing multiple requests.
 
 ## 4. Demo screenshots
 
