@@ -46,6 +46,55 @@ SQLite stores shopper preferences, inquiry history, ordered result references, a
 
 The [recorded submission demo](evidence/submission-demo.md) shows multi-turn inventory exploration and recall in a **completely new session** for the same shopper, followed by lead and booking checks. The [machine-readable record](evidence/submission-demo.json) preserves responses and verification results. [VALIDATION.md](VALIDATION.md) identifies the verified source snapshot, checks, and limitations.
 
+### Required demo excerpts
+
+These are excerpts from the recorded live run above, with Markdown emphasis removed and omitted reply text marked. The shopper and session labels are synthetic; the fresh session begins with zero saved turns.
+
+<details>
+<summary>Demo 1: multi-turn inventory exploration</summary>
+
+```text
+Shopper: submission-memory-shopper | Session: memory-1
+
+User: My budget is AED 25,000. I prefer convertibles. Find a Ford Mustang under AED 25,000.
+Assistant: I found 1 Ford Mustang convertible under AED 25,000:
+
+1. 2014 Ford Mustang V6 Convertible (Listing ID: 20)
+   * Price: AED 21,500
+   * Mileage: 164,000 km
+[Additional reply text omitted.]
+
+User: What's its mileage?
+Assistant: The 2014 Ford Mustang V6 Convertible has an odometer reading of 164,000 km.
+[Additional reply text omitted.]
+
+User: Does it have a warranty?
+Assistant: No warranty information is specified in the vehicle's details or seller description for the 2014 Ford Mustang V6 Convertible.
+[Additional reply text omitted.]
+
+User: I like this car.
+Assistant: I've saved the 2014 Ford Mustang V6 Convertible (Listing ID: 20) to your saved cars!
+[Additional reply text omitted.]
+```
+
+</details>
+
+<details>
+<summary>Demo 2: recall in a completely new session</summary>
+
+```text
+Client action: create a new session for the same shopper.
+Shopper: submission-memory-shopper | Session: memory-2
+Saved turns before the first message: 0
+
+User: What was my budget, and which car did I like last time?
+Assistant: In your last visit, your maximum budget was AED 25,000. 
+
+The car you liked was a 2014 Ford Mustang V6 convertible (Listing #20), priced at AED 21,500 with 164,000 km.
+```
+
+</details>
+
 | Requirement | Implementation / evidence |
 |---|---|
 | FastAPI backend and Streamlit client | [main.py](main.py), [app.py](app.py) |
