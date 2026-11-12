@@ -1,0 +1,593 @@
+{
+  "started_at": "2026-11-12T14:19:26.247589+00:00",
+  "model": "gemini-3.5-flash",
+  "isolated_data": true,
+  "source_sha256": {
+    "app.py": "1cc65562c39e8781a2d270f72f3f273fbc3be04a2f43155c3226cef7414a45fe",
+    "assistant_service.py": "863c7dbad793da366c392892f2a7a5fba629f29f54da4e7209478c59d50620e0",
+    "booking.py": "e123ac000899d0598f523c99984b67a3ec2b79446af528ad35cdcf22bf74eb15",
+    "constraints.py": "c97af2d65d21104576a506bbc9b82160540fef90135780f3d509603122106978",
+    "conversation_context.py": "d2116577749bbfacb091a330ac387de2e895792e4ef73213fd2a0b3e65fdc73a",
+    "inventory.py": "7320183e96a79ec3c3eccff118d9c18a3b12fcce1855e4f93fa1f04a3435f151",
+    "main.py": "988dc987e611da1de6dd6a65d107f4df9962fa4cd7a1e56792f7325e3a8ed4c7",
+    "planner.py": "a9d81b3d4dc9f7380684f80d47a1eb263cf70f77816a6f78fef8841599aa3e86",
+    "storage.py": "d5e9e4ca23da35d40f466beade1d9414f6180012c3503ddf4c877b33ff53ee48"
+  },
+  "status": "passed",
+  "sections": [
+    {
+      "title": "1. Multi-turn inventory exploration",
+      "events": [
+        {
+          "kind": "session",
+          "shopper": "submission-memory-shopper",
+          "session": "memory-1",
+          "initial_turns": 0
+        },
+        {
+          "kind": "chat",
+          "shopper": "submission-memory-shopper",
+          "session": "memory-1",
+          "message": "My budget is AED 25,000. I prefer convertibles. Find a Ford Mustang under AED 25,000.",
+          "http_status": 200,
+          "reply": "I found 1 Ford Mustang convertible under AED 25,000:\n\n1. **2014 Ford Mustang V6 Convertible** (Listing ID: 20)\n   * **Price:** AED 21,500\n   * **Mileage:** 164,000 km\n   * **Details:** 3.7L V6 engine, silver exterior with fabric interior, soft top convertible, cruise control, Bluetooth, climate control, tiptronic gears, and rear parking sensors. *(Note: 300 BHP power output is a seller description claim).*\n\nWould you like to schedule a viewing or test drive for this Mustang, or inspect more details about it?",
+          "cars": [
+            {
+              "listing_id": 20,
+              "year": 2014,
+              "make": "ford",
+              "model": "mustang",
+              "trim": "v6",
+              "title": "2014 FORD MUSTANG SOFT TOP CONVERTIBLE 3.7L IN VERY EXCELLENT CONDITION",
+              "description": "2014 Ford Mustang 3.7L 6 Cylinders 300 BHP ------------------------------- American Specifications 164,000 kms ------------------------------- 1. Silver with Fabric interior 2. Climate control 3. Cruise Control 4. Bluetooth System 5. Tiptronic Gears 6. Soft top convertible 7. Keyless Entry 8. Rear Parking Sensors 9. Fog Lights 10. Dual Exhaust ----------------------------- AED 21,500/- ------------------------------- FOR MORE DETAILS CAL OR WATSAPP:- +971558251199",
+              "price_aed": 21500.0,
+              "mileage_km": 164000,
+              "photo_url": "https://dbz-images.dubizzle.com/images/2024/02/08/109fa2e19ba44475acfdb5b3413de1de-.jpeg?impolicy=dpv",
+              "booking_eligible": true
+            }
+          ],
+          "tool_trace": [
+            {
+              "tool": "update_preferences",
+              "status": "saved",
+              "listing_ids": []
+            },
+            {
+              "tool": "search_inventory",
+              "status": "found",
+              "listing_ids": [
+                20
+              ]
+            }
+          ],
+          "booking_proposal": null,
+          "booking": null
+        },
+        {
+          "kind": "chat",
+          "shopper": "submission-memory-shopper",
+          "session": "memory-1",
+          "message": "What's its mileage?",
+          "http_status": 200,
+          "reply": "The 2014 Ford Mustang V6 Convertible has an odometer reading of **164,000 km**. \n\n*(Note: Standardized fuel economy measurements are not provided in the vehicle specifications).*\n\nWould you like to schedule a viewing or test drive for this Mustang, or inspect any other details?",
+          "cars": [],
+          "tool_trace": [
+            {
+              "tool": "read_listing",
+              "status": "ok",
+              "listing_ids": []
+            }
+          ],
+          "booking_proposal": null,
+          "booking": null
+        },
+        {
+          "kind": "chat",
+          "shopper": "submission-memory-shopper",
+          "session": "memory-1",
+          "message": "Does it have a warranty?",
+          "http_status": 200,
+          "reply": "No warranty information is specified in the vehicle's details or seller description for the 2014 Ford Mustang V6 Convertible. \n\nA pre-purchase technical inspection would be recommended to evaluate its current mechanical condition and resolve any uncertainty. \n\nWould you like to schedule a viewing or test drive to inspect the vehicle in person?",
+          "cars": [],
+          "tool_trace": [
+            {
+              "tool": "read_listing",
+              "status": "ok",
+              "listing_ids": []
+            }
+          ],
+          "booking_proposal": null,
+          "booking": null
+        },
+        {
+          "kind": "chat",
+          "shopper": "submission-memory-shopper",
+          "session": "memory-1",
+          "message": "What does V6 mean?",
+          "http_status": 200,
+          "reply": "A **V6 engine** refers to an engine layout with six cylinders arranged in two opposing banks of three in a \"V\" shape around a shared crankshaft. \n\nIn general automotive design:\n* **Configuration:** V6 engines offer a balance between compact size and smooth power delivery, generally producing more power than a typical 4-cylinder engine while being lighter and more compact than a V8.\n* **In this Mustang:** It refers to the 3.7-liter 6-cylinder powertrain *(the seller description notes a output of 300 BHP)*.\n\nEngine layout alone does not determine fuel economy, long-term reliability, or maintenance costs, which depend on specific configuration, driving habits, and maintenance history. \n\nWould you like to schedule a viewing or test drive for this Mustang, or check any other details?",
+          "cars": [],
+          "tool_trace": [],
+          "booking_proposal": null,
+          "booking": null
+        },
+        {
+          "kind": "chat",
+          "shopper": "submission-memory-shopper",
+          "session": "memory-1",
+          "message": "I like this car.",
+          "http_status": 200,
+          "reply": "I've saved the 2014 Ford Mustang V6 Convertible (Listing ID: 20) to your saved cars!\n\nWould you like to schedule a viewing or a test drive for it, or explore anything else?",
+          "cars": [],
+          "tool_trace": [
+            {
+              "tool": "like_listing",
+              "status": "ok",
+              "listing_ids": []
+            }
+          ],
+          "booking_proposal": null,
+          "booking": null
+        }
+      ]
+    },
+    {
+      "title": "2. Returning shopper in a completely new session",
+      "events": [
+        {
+          "kind": "session",
+          "shopper": "submission-memory-shopper",
+          "session": "memory-2",
+          "initial_turns": 0
+        },
+        {
+          "kind": "chat",
+          "shopper": "submission-memory-shopper",
+          "session": "memory-2",
+          "message": "What was my budget, and which car did I like last time?",
+          "http_status": 200,
+          "reply": "In your last visit, your maximum budget was **AED 25,000**. \n\nThe car you liked was a **2014 Ford Mustang V6 convertible** (Listing #20), priced at **AED 21,500** with 164,000 km.",
+          "cars": [],
+          "tool_trace": [
+            {
+              "tool": "recall_shopper",
+              "status": "ok",
+              "listing_ids": []
+            }
+          ],
+          "booking_proposal": null,
+          "booking": null
+        }
+      ]
+    },
+    {
+      "title": "3. Gather price range and needs; export a lead without booking",
+      "events": [
+        {
+          "kind": "session",
+          "shopper": "submission-lead-shopper",
+          "session": "lead-1",
+          "initial_turns": 0
+        },
+        {
+          "kind": "chat",
+          "shopper": "submission-lead-shopper",
+          "session": "lead-1",
+          "message": "What cars are available?",
+          "http_status": 200,
+          "reply": "We have a wide selection of vehicles available in inventory across various makes and body styles, including SUVs, sedans, coupes, and luxury models. \n\nHere are the first few options:\n1. **2013 Ford Explorer** (Silver)\n2. **2019 Mercedes-Benz C 300** (c300 luxury)\n3. **2018 Land Rover Range Rover Velar** — AED 119,750 (68,000 km)\n4. **2019 Mercedes-Benz E 450 Coupe** (56,000 km)\n5. **2017 Mercedes-Benz C 63 Coupe AMG** (48,000 km)\n\nWhat price range in AED works for you?",
+          "cars": [
+            {
+              "listing_id": 1,
+              "year": 2013,
+              "make": "ford",
+              "model": "explorer",
+              "trim": "other",
+              "title": "ford Explorer 2013 silver color GCC calen car",
+              "description": "ford explorer 2013 silver color GCC calen car",
+              "price_aed": null,
+              "mileage_km": null,
+              "photo_url": "https://dbz-images.dubizzle.com/images/2023/04/02/cbea51c7d80b4b7d882533bb24abc0fb-.jpeg?imwidth=800",
+              "booking_eligible": true
+            },
+            {
+              "listing_id": 2,
+              "year": 2019,
+              "make": "mercedes-benz",
+              "model": "c-class",
+              "trim": "c300 luxury",
+              "title": "2019 MERCEDES C 300, AMG SPEC, 2.0T, USA",
+              "description": "Deluxe Cars Fze, Showroom No : 143, Ducamz, Ras Al Khor, Dubai, U.A.E Mobile No : +971552011671",
+              "price_aed": null,
+              "mileage_km": null,
+              "photo_url": "https://dbz-images.dubizzle.com/images/2023/08/03/c6ac24f32ee240f4afe45d0f5a992a5e-.jpeg?impolicy=dpv",
+              "booking_eligible": true
+            },
+            {
+              "listing_id": 3,
+              "year": 2018,
+              "make": "land rover",
+              "model": "range rover velar",
+              "trim": "other",
+              "title": "Land Rover Range Rover Velar 2018 GCC | Warranty",
+              "description": "Payment plans through bank finance: • AED 2,111.00 monthly for 5 years with 10% Down-Payment • AED 1,876.00 monthly for 5 years with 20% Down-Payment • AED 119,750.00 in cash For Sale: 2018 Range Rover Velar R-Dynamic SE Experience the ultimate blend of luxury and performance with this stunning Range Rover Velar. Powered by a robust 2.0 L I4 engine generating 250 hp, this SUV promises a thrilling drive every time. • Mileage: Just 68,000 km • Drive Type: Automatic AWD • Seating Capacity: 5 with plush beige interior • Transmission: 8-speed automatic (AT) • Trim: R-Dynamic SE • Regional Specs: GCC specifications Impeccably maintained and in good condition , this vehicle comes with GCC warranty for your peace of mind. Enjoy the flexibility of a bespoke down-payment plan tailored to your needs. Don't miss the chance to own a piece of Land Rover luxury with a 16\" rim size and an elegant design that's built to impress. Contact us today and drive away in style! Equipment: • Rim size 16″ • Beige interior Payment Methods: • Cash • Cryptocurrency • Bank financing (cars from 2018 and above) • In-house financing DD ID: 419-BACYY",
+              "price_aed": 119750.0,
+              "mileage_km": 68000,
+              "photo_url": "https://dbz-images.dubizzle.com/images/2024/03/15/af9594c6dd8a4c6aa1a7bec91c12f80a-.jpeg?imwidth=800",
+              "booking_eligible": true
+            },
+            {
+              "listing_id": 4,
+              "year": 2019,
+              "make": "mercedes-benz",
+              "model": "e-class",
+              "trim": "e 400",
+              "title": "MERCEDES E 450 COUPE 2019 JAPANESE SPECS",
+              "description": "Model - 2019 Mileage - 56,000 KM Grade - 4.5 B +971568992992 Japanese Specs Clean Title Scratch Less Car Fresh Import No Paint No Accident Lane assist Radar Adaptive Cruise Control Heads Up Display Auto park 360 ° Camera Sunroof AMG Rims Brumester Surround Sound System",
+              "price_aed": null,
+              "mileage_km": 56000,
+              "photo_url": "https://dbz-images.dubizzle.com/images/2024/05/19/c47ef9ac50f548b580033ad92d14bd0c-.heic?impolicy=dpv",
+              "booking_eligible": true
+            },
+            {
+              "listing_id": 5,
+              "year": 2017,
+              "make": "mercedes-benz",
+              "model": "c-class",
+              "trim": "c63 amg",
+              "title": "MERCEDES C 63 COUPE AMG 2017 JAPANESE SPECS",
+              "description": "Model - 2017 Mileage - 48000 KM Grade - 4.5 B +971568992992 Japanese specs Low mileage V8 4.0 biturbo Panoramic sunroof Red / black interior Lane assist Adaptive cruise control Radar Paddle shifter Ambient light Brumester surround sound system",
+              "price_aed": null,
+              "mileage_km": 48000,
+              "photo_url": "https://dbz-images.dubizzle.com/images/2024/05/21/da4cdbd841dd4516a83c409a372d79c8-.jpeg?impolicy=dpv",
+              "booking_eligible": true
+            }
+          ],
+          "tool_trace": [
+            {
+              "tool": "search_inventory",
+              "status": "found",
+              "listing_ids": [
+                1,
+                2,
+                3,
+                4,
+                5
+              ]
+            }
+          ],
+          "booking_proposal": null,
+          "booking": null
+        },
+        {
+          "kind": "chat",
+          "shopper": "submission-lead-shopper",
+          "session": "lead-1",
+          "message": "Between AED 20,000 and AED 30,000",
+          "http_status": 200,
+          "reply": "Under your budget of **AED 20,000 to AED 30,000**, here is the verified option currently available:\n\n1. **2014 Ford Mustang Soft Top Convertible V6** (Listing 20)\n   - **Price:** AED 21,500\n   - **Mileage:** 164,000 km\n   - **Features:** Silver with fabric interior, 3.7L V6 (300 hp), soft top convertible, Bluetooth, cruise control, climate control, and rear parking sensors.\n\n*(Note: There are 87 other listings in our system with unlisted prices that cannot be verified under this budget.)*\n\nWhat kind of car or specific features do you need for your search?",
+          "cars": [
+            {
+              "listing_id": 20,
+              "year": 2014,
+              "make": "ford",
+              "model": "mustang",
+              "trim": "v6",
+              "title": "2014 FORD MUSTANG SOFT TOP CONVERTIBLE 3.7L IN VERY EXCELLENT CONDITION",
+              "description": "2014 Ford Mustang 3.7L 6 Cylinders 300 BHP ------------------------------- American Specifications 164,000 kms ------------------------------- 1. Silver with Fabric interior 2. Climate control 3. Cruise Control 4. Bluetooth System 5. Tiptronic Gears 6. Soft top convertible 7. Keyless Entry 8. Rear Parking Sensors 9. Fog Lights 10. Dual Exhaust ----------------------------- AED 21,500/- ------------------------------- FOR MORE DETAILS CAL OR WATSAPP:- +971558251199",
+              "price_aed": 21500.0,
+              "mileage_km": 164000,
+              "photo_url": "https://dbz-images.dubizzle.com/images/2024/02/08/109fa2e19ba44475acfdb5b3413de1de-.jpeg?impolicy=dpv",
+              "booking_eligible": true
+            }
+          ],
+          "tool_trace": [
+            {
+              "tool": "update_preferences",
+              "status": "saved",
+              "listing_ids": []
+            },
+            {
+              "tool": "search_inventory",
+              "status": "found",
+              "listing_ids": [
+                20
+              ]
+            }
+          ],
+          "booking_proposal": null,
+          "booking": null
+        },
+        {
+          "kind": "chat",
+          "shopper": "submission-lead-shopper",
+          "session": "lead-1",
+          "message": "Automatic with room for two child seats",
+          "http_status": 200,
+          "reply": "I have updated your preferences to record that you need an **automatic vehicle with room for two child seats**.\n\nUnder your current budget of **AED 20,000 to AED 30,000**:\n- The only verified match in inventory is the **2014 Ford Mustang Soft Top Convertible V6** (AED 21,500). However, as a two-door sports convertible, its rear seating space may be quite tight or impractical for accommodating two child seats comfortably.\n- There are no other verified listings under AED 30,000 at this moment. We do have unlisted-price family models in inventory (such as the Ford Explorer, Mitsubishi Pajero, and Lincoln MKX), but their prices are not verified within this range.\n\nWould you like to consider expanding your budget limit or looking into specific family-friendly body styles (like 4-door sedans or SUVs)?",
+          "cars": [],
+          "tool_trace": [
+            {
+              "tool": "search_inventory",
+              "status": "no_verified_matches",
+              "listing_ids": []
+            },
+            {
+              "tool": "search_inventory",
+              "status": "found",
+              "listing_ids": []
+            }
+          ],
+          "booking_proposal": null,
+          "booking": null
+        },
+        {
+          "kind": "csv",
+          "csv": "user_id,session_id,budget_min_aed,budget_max_aed,needs,updated_at\r\nsubmission-lead-shopper,lead-1,20000,30000,\"Automatic with room for two child seats, automatic\",2026-11-12T14:20:50+00:00\r\n",
+          "note": "Only the generated session UUID is replaced with its demo label."
+        }
+      ]
+    },
+    {
+      "title": "4. Review and confirm a simulated booking",
+      "events": [
+        {
+          "kind": "chat",
+          "shopper": "submission-memory-shopper",
+          "session": "memory-1",
+          "message": "Book a test drive of the 2014 Ford Mustang on 2026-11-16 at 10 AM Dubai time.",
+          "http_status": 200,
+          "reply": "I have prepared a proposal for your test drive:\n\n* **Vehicle:** 2014 Ford Mustang V6 Convertible (Listing ID: 20)\n* **Type:** Test Drive\n* **Date:** Monday, November 16, 2026\n* **Time:** 10:00 AM (Dubai time)\n\nThis proposal is currently **awaiting your confirmation** and no appointment is reserved yet. Please confirm if you would like to proceed with this booking (you can reply \"yes\" or click \"Confirm booking\").",
+          "cars": [],
+          "tool_trace": [
+            {
+              "tool": "prepare_booking",
+              "status": "awaiting_confirmation",
+              "listing_ids": []
+            }
+          ],
+          "booking_proposal": {
+            "status": "awaiting_confirmation",
+            "session_id": "e876355f26674ccea0ffc4318f72e639",
+            "listing_id": 20,
+            "car_label": "2014 Ford Mustang",
+            "kind": "test_drive",
+            "day": "2026-11-16",
+            "time": "10:00",
+            "starts_at": "2026-11-16T10:00:00+04:00",
+            "proposal_id": "d5d47e7fef684393a92a9968f5b1401c"
+          },
+          "booking": null
+        },
+        {
+          "kind": "chat",
+          "shopper": "submission-memory-shopper",
+          "session": "memory-1",
+          "message": "Before I confirm, remind me of its mileage.",
+          "http_status": 200,
+          "reply": "The 2014 Ford Mustang V6 Convertible has an odometer reading of **164,000 km**.\n\nYour test drive proposal details remain saved as:\n* **Vehicle:** 2014 Ford Mustang V6 Convertible (Listing ID: 20)\n* **Type:** Test Drive\n* **Date:** Monday, November 16, 2026\n* **Time:** 10:00 AM (Dubai time)\n\nThis proposal is still **awaiting your final confirmation**. Would you like to go ahead and confirm this test drive now?",
+          "cars": [],
+          "tool_trace": [
+            {
+              "tool": "read_listing",
+              "status": "ok",
+              "listing_ids": []
+            }
+          ],
+          "booking_proposal": null,
+          "booking": null
+        },
+        {
+          "kind": "confirmation",
+          "reply": "Your simulated test drive for the 2014 Ford Mustang is confirmed for 2026-11-16 at 10:00 Dubai time (UTC+04:00). This is a demo booking; no dealership has been contacted.",
+          "booking": {
+            "booking_id": "booking-12",
+            "status": "confirmed",
+            "listing_id": 20,
+            "starts_at": "2026-11-16T10:00:00+04:00",
+            "kind": "test_drive",
+            "car_label": "2014 Ford Mustang V6",
+            "session_id": "e876355f26674ccea0ffc4318f72e639"
+          }
+        }
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "name": "Backend imports exactly 100 inventory listings",
+      "passed": true
+    },
+    {
+      "name": "memory-1: session created",
+      "passed": true
+    },
+    {
+      "name": "memory-1: starts with no saved messages",
+      "passed": true
+    },
+    {
+      "name": "memory-1: My budget is AED 25,000. I prefer convertibles. Find a Ford Mustang under AED 25,000. — HTTP 200",
+      "passed": true
+    },
+    {
+      "name": "Mustang search returns listing 20",
+      "passed": true
+    },
+    {
+      "name": "Mustang asking price is AED 21,500",
+      "passed": true
+    },
+    {
+      "name": "memory-1: What's its mileage? — HTTP 200",
+      "passed": true
+    },
+    {
+      "name": "Mileage answer contains the verified 164,000 km",
+      "passed": true
+    },
+    {
+      "name": "memory-1: Does it have a warranty? — HTTP 200",
+      "passed": true
+    },
+    {
+      "name": "memory-1: What does V6 mean? — HTTP 200",
+      "passed": true
+    },
+    {
+      "name": "memory-1: I like this car. — HTTP 200",
+      "passed": true
+    },
+    {
+      "name": "Explicit personal budget was persisted",
+      "passed": true
+    },
+    {
+      "name": "First conversation has not booked anything",
+      "passed": true
+    },
+    {
+      "name": "memory-2: session created",
+      "passed": true
+    },
+    {
+      "name": "memory-2: starts with no saved messages",
+      "passed": true
+    },
+    {
+      "name": "New session has no selected car",
+      "passed": true
+    },
+    {
+      "name": "New session retains the same shopper's budget",
+      "passed": true
+    },
+    {
+      "name": "memory-2: What was my budget, and which car did I like last time? — HTTP 200",
+      "passed": true
+    },
+    {
+      "name": "Fresh-session reply recalls AED 25,000",
+      "passed": true
+    },
+    {
+      "name": "Fresh-session reply recalls the Mustang",
+      "passed": true
+    },
+    {
+      "name": "lead-1: session created",
+      "passed": true
+    },
+    {
+      "name": "lead-1: starts with no saved messages",
+      "passed": true
+    },
+    {
+      "name": "Different shopper does not inherit preferences",
+      "passed": true
+    },
+    {
+      "name": "lead-1: What cars are available? — HTTP 200",
+      "passed": true
+    },
+    {
+      "name": "Browsing asks a budget question",
+      "passed": true
+    },
+    {
+      "name": "lead-1: Between AED 20,000 and AED 30,000 — HTTP 200",
+      "passed": true
+    },
+    {
+      "name": "Budget reply asks about vehicle requirements",
+      "passed": true
+    },
+    {
+      "name": "lead-1: Automatic with room for two child seats — HTTP 200",
+      "passed": true
+    },
+    {
+      "name": "CSV contains the stated AED 20,000–30,000 range",
+      "passed": true
+    },
+    {
+      "name": "CSV captures automatic transmission and child-seat needs",
+      "passed": true
+    },
+    {
+      "name": "Lead collection does not require an appointment",
+      "passed": true
+    },
+    {
+      "name": "memory-1: Book a test drive of the 2014 Ford Mustang on 2026-11-16 at 10 AM Dubai time. — HTTP 200",
+      "passed": true
+    },
+    {
+      "name": "Complete request produces an awaiting-confirmation proposal",
+      "passed": true
+    },
+    {
+      "name": "Proposal contains exact car, type and time",
+      "passed": true
+    },
+    {
+      "name": "Preparing the proposal reserves nothing",
+      "passed": true
+    },
+    {
+      "name": "memory-1: Before I confirm, remind me of its mileage. — HTTP 200",
+      "passed": true
+    },
+    {
+      "name": "Mileage question preserves the exact proposal",
+      "passed": true
+    },
+    {
+      "name": "Question before confirmation reserves nothing",
+      "passed": true
+    },
+    {
+      "name": "Explicit confirmation succeeds without Gemini",
+      "passed": true
+    },
+    {
+      "name": "Receipt has the exact reviewed car, type and time",
+      "passed": true
+    },
+    {
+      "name": "Retry returns the same receipt",
+      "passed": true
+    },
+    {
+      "name": "Exactly one appointment exists",
+      "passed": true
+    },
+    {
+      "name": "Other shopper cannot see the appointment",
+      "passed": true
+    }
+  ],
+  "provider_calls": 22,
+  "finished_at": "2026-11-12T14:21:05.295355+00:00",
+  "source_unchanged": true,
+  "manual_review": {
+    "status": "passed_with_wording_limitations",
+    "reviewed_at": "2026-11-12T14:21:56.582043+00:00",
+    "reviewer": "Assistant review of the actual recorded replies and backend assertions",
+    "assessments": [
+      "Search and follow-up mileage identify listing 20, AED 21,500 and 164,000 km.",
+      "Warranty is explicitly described as unspecified in both structured details and seller description; no coverage is invented.",
+      "V6 is explained as six cylinders arranged in a V; the 300 BHP figure is labelled as a seller description claim in the explanation.",
+      "A completely new session starts with zero turns and no selected car, then recalls the same shopper budget and liked Mustang.",
+      "The separate shopper is asked for budget and then needs. A literal short needs answer is accepted and the actual CSV contains both bounds and automatic/child-seat needs.",
+      "The model distinguishes unknown-priced family alternatives from verified budget matches and qualifies the Mustang child-seat suitability as general practical advice.",
+      "Booking prose describes a proposal awaiting confirmation, including after a mileage question. The receipt appears only after the exact proposal API confirmation.",
+      "Confirmation and retry are independent of Gemini; the actual booking API returns exactly one appointment and none for the other shopper."
+    ],
+    "limitations": [
+      "Several replies repeat a viewing/test-drive invitation; the mileage answer also adds an unnecessary note about fuel economy.",
+      "These are 11 successful recorded model turns, not a guarantee of future wording or universal interpretation. Backend invariants are also tested offline.",
+      "The earlier compatible-price-bound preflight failure was preserved privately and fixed before this recorded source snapshot."
+    ]
+  }
+}

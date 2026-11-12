@@ -1,0 +1,26 @@
+{
+  "verified_at": "2026-11-12T14:22:22.484060+00:00",
+  "source_sha256": {
+    "app.py": "1cc65562c39e8781a2d270f72f3f273fbc3be04a2f43155c3226cef7414a45fe",
+    "assistant_service.py": "863c7dbad793da366c392892f2a7a5fba629f29f54da4e7209478c59d50620e0",
+    "booking.py": "e123ac000899d0598f523c99984b67a3ec2b79446af528ad35cdcf22bf74eb15",
+    "constraints.py": "c97af2d65d21104576a506bbc9b82160540fef90135780f3d509603122106978",
+    "conversation_context.py": "d2116577749bbfacb091a330ac387de2e895792e4ef73213fd2a0b3e65fdc73a",
+    "inventory.py": "7320183e96a79ec3c3eccff118d9c18a3b12fcce1855e4f93fa1f04a3435f151",
+    "main.py": "988dc987e611da1de6dd6a65d107f4df9962fa4cd7a1e56792f7325e3a8ed4c7",
+    "planner.py": "a9d81b3d4dc9f7380684f80d47a1eb263cf70f77816a6f78fef8841599aa3e86",
+    "storage.py": "d5e9e4ca23da35d40f466beade1d9414f6180012c3503ddf4c877b33ff53ee48"
+  },
+  "environment": "Windows, Python 3.11.9; fresh virtual environment from uv.lock",
+  "install_command": "uv sync --locked",
+  "install_exit_code": 0,
+  "test_command": "uv run --locked pytest -q",
+  "test_exit_code": 0,
+  "tests_passed": 329,
+  "inventory_subtests_passed": 404,
+  "elapsed_seconds": 48.3,
+  "warnings": [
+    "Starlette TestClient emits an httpx deprecation warning; tests pass."
+  ],
+  "scope": "Offline tests use controlled planners; real Gemini evidence is separate in submission-demo.json."
+}
