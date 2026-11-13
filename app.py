@@ -36,7 +36,7 @@ STYLE = """
 
 
 def api(method, path, **kwargs):
-    response = requests.request(method, API_BASE + path, timeout=(4, 75), **kwargs)
+    response = requests.request(method, API_BASE + path, timeout=(4, 240), **kwargs)
     response.raise_for_status()
     return response.json()
 

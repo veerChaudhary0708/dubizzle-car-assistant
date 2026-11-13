@@ -322,7 +322,7 @@ class GeminiPlanner:
     def __init__(self, api_key=None, model=None):
         self.model = model or os.getenv("GEMINI_MODEL") or "gemini-3.5-flash"
         key = api_key or os.getenv("GEMINI_API_KEY")
-        http = types.HttpOptions(timeout=16000, retry_options=types.HttpRetryOptions(
+        http = types.HttpOptions(timeout=60000, retry_options=types.HttpRetryOptions(
             attempts=3, initial_delay=0.8, max_delay=2, http_status_codes=[500, 502, 503, 504]))
         self.client = genai.Client(api_key=key, http_options=http) if key else None
         declarations = [types.FunctionDeclaration(name=name, description=desc, parameters_json_schema=_tool_schema(args))
